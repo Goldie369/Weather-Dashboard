@@ -11,3 +11,21 @@ $("#search-btn").on("click", function () {
     localStorage.setItem("prev-search", userinput + ";")
     $.ajax({
         url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + userinput.split(',')[0] + "," + userinput.split(',')[1] + ",USA" + "&apiKey=" + weatherApiKey
+    }).then(function (coords) {
+        coords = (coords)
+        $.ajax({
+            url: `https://api.openweathermap.org/data/2.5/weather?lat=` + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
+        })
+
+
+            .then(function (res) {
+                console.log("currentWeater", res)
+                let { icon, description } = res.weather[0]
+                console.log(resultsContainer)
+                resultsContainer.innerHTML = `<div><div>Current</div>
+
+                
+                <div>${description}</div>
+                <div>${(((res.main.temp) - 273.15) * (9 / 5) + 32).toFixed(2)}</div>
+                <div>${res.wind.speed}</div>
+                </div>`
