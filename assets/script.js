@@ -44,3 +44,33 @@ $("#search-btn").on("click", function () {
             })
     });
 })
+
+var getWeatherBtn = document.getElementById("user-form")
+var cityInput = document.getElementById("user-input")
+var resultsContainer = document.getElementById("weather-container")
+var fiveDayContainer = document.getElementById("five-day")
+var searchHistory = document.getElementById("search-history")
+var todayWeater = document.getElementById("today-weather")
+
+   // `<div><div>Current</div>
+//<div>${description}</div>
+//<div>${(((data.list[0].main.temp) - 273.15) * (9 / 5) + 32).toFixed(2)}</div>
+//<div>${data.list[0].wind.speed}
+//</div>`
+
+// let { icon, description } = data.list[i].weather[0]
+// icon1.src = "https://openweathermap.org/img/wn/" + icon + ".png"
+// temperature.textContent = (((data.list[i].main.temp) - 273.15) * (9 / 5) + 32).toFixed(2)
+// windSpeed.textContent = data.list[i].wind.speed;
+// humidity.textContent = data.list[i].main.humidity;
+// weatherDescription.textContent = description
+
+// temp	287.44
+// feels_like	286
+// temp_min	282.99
+// temp_max	287.44
+// pressure	1010
+// sea_level	1010
+// grnd_level	988
+// humidity	41
+// temp_kf	4.45
