@@ -2,9 +2,10 @@
     background-color: aqua;
     padding: 15px;
     font-size: 30px;
+    background-image: url("../images/file-20180820-30593-1nxanpj.jpg.webp"),
 }
 #forecast{
     display: flex;
     justify-content: space-around;
-
+    
 }
