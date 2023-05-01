@@ -1,5 +1,6 @@
 var weatherApiKey = '1dded313c35e600dd8d8c642de17d0ef';
-
+var forecast = ""
+var animatedTitles = { Clear: '☀', Clouds: '☁', Rain: '☔', Drizzle: '☔', Thunderstorm: '⚡', Snow: '❄' };
 var coords
 var userinput = ""
 $('#user-input').on("change", function (e) { userinput = e.target.value })
@@ -20,11 +21,11 @@ $("#search-btn").on("click", function () {
 
             .then(function (res) {
                 console.log("currentWeater", res)
-                let { icon, description } = res.weather[0]
+                let { icon, description, main } = res.weather[0]
                 console.log(resultsContainer)
                 resultsContainer.innerHTML = `<div><div>Current</div>
 
-                
+              <div>${animatedTitles[main]}</div>
                 <div>${description}</div>
                 <div>${(((res.main.temp) - 273.15) * (9 / 5) + 32).toFixed(2)}</div>
                 <div>${res.wind.speed}</div>
@@ -32,14 +33,25 @@ $("#search-btn").on("click", function () {
                 $.ajax({
                     url: 'http://api.openweathermap.org/data/2.5/forecast?lat=' + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
                 }).then(function (res) {
-                    console.log(res)
-                    console.log("date", res.list[0].dt_txt.split(" ")[0])
-                    for (leti = 0; i < 4; i++) {
-                        resultsContainer.append(`<div><div>${res.list[i].dt_txt.split(" ")[0]}</div><div>${res.list[i].main.temp
-
-                            }</div><div>${res.list[i].wind.speed}</div></div>`)
+                    let { icon, description, main } = res.list[0].weather[0]
+                    var today = dayjs()
+                    const dates = []
+                    for (let i = 1; i < 6; i++) {
+                        dates.push(today.add(i, 'day').format('dddd'));
                     }
-                    //resultsContainer.innerHTML = update
+
+
+
+
+                    for (let i = 0; i < 5; i++) {
+                        forecast += (`<div class="forecast-row"><div>${dates[i]}</div>
+                        <div>${animatedTitles[main]}</div>
+                        <div>${description}</div>
+                        <div>${(((res.list[i].main.temp) - 273.15) * (9 / 5) + 32).toFixed(2)}</div>
+                        <div>${res.list[i].wind.speed}</div></div>`)
+                    }
+                    forecastContainer.innerHTML = forecast
+
                 })
             })
     });
@@ -48,7 +60,7 @@ $("#search-btn").on("click", function () {
 var getWeatherBtn = document.getElementById("user-form")
 var cityInput = document.getElementById("user-input")
 var resultsContainer = document.getElementById("weather-container")
-var fiveDayContainer = document.getElementById("five-day")
+var forecastContainer = document.getElementById("forecast")
 var searchHistory = document.getElementById("search-history")
 var todayWeater = document.getElementById("today-weather")
 

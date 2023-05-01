@@ -1,0 +1,10 @@
+.forecast-row{
+    background-color: aqua;
+    padding: 15px;
+    font-size: 30px;
+}
+#forecast{
+    display: flex;
+    justify-content: space-around;
+
+}
