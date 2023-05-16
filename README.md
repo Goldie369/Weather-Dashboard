@@ -25,7 +25,7 @@ The following criteria include app functions:
 ## Demo 
 
 
-![Weather](./)
+![Weather](./images/Screen%20Shot%202023-05-15%20at%209.08.17%20PM.png)
 
 
 
