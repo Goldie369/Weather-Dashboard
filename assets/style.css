@@ -1,11 +1,39 @@
-.forecast-row{
-    background-color: aqua;
+body{
+    
     padding: 15px;
     font-size: 30px;
-    background-image: url("../images/file-20180820-30593-1nxanpj.jpg.webp"),
+    background-image: url("../images/file-20180820-30593-1nxanpj.jpg.webp");
+    background-repeat:no-repeat;
+    background-size: 100%;
+
 }
 #forecast{
     display: flex;
     justify-content: space-around;
     
 }
+.current-weather{
+display: flex;
+width: 100%;
+}
+.current-container{
+    background-color: rgb(112, 112, 225);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 15px;
+}
+.font-class{
+    font-size: 23px;
+}
+.img-style{
+  
+   font-size: 100px;
+   margin-top: -40px;
+ }
+ .history-container{
+height: 200px;
+overflow-y: scroll;
+ }

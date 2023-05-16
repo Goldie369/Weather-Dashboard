@@ -9,9 +9,10 @@ $("#search-btn").on("click", function () {
     console.log(userinput)
     var prevSearch = localStorage.getItem("prev-search")
     var prevArr = prevSearch?.split(";")
-    localStorage.setItem("prev-search", userinput + ";")
+    prevArr.push(userinput)
+    localStorage.setItem("prev-search", prevArr.join(";"))
     $.ajax({
-        url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + userinput.split(',')[0] + "," + userinput.split(',')[1] + ",USA" + "&apiKey=" + weatherApiKey
+        url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + userinput + "&limit=1&apiKey=" + weatherApiKey
     }).then(function (coords) {
         coords = (coords)
         $.ajax({
@@ -23,12 +24,12 @@ $("#search-btn").on("click", function () {
                 console.log("currentWeater", res)
                 let { icon, description, main } = res.weather[0]
                 console.log(resultsContainer)
-                resultsContainer.innerHTML = `<div><div>Current</div>
+                resultsContainer.innerHTML = `<div class ="current-container"><h3>Current</h3>
 
-              <div>${animatedTitles[main]}</div>
+                <div class = "img-style">${animatedTitles[main]}</div>
                 <div>${description}</div>
-                <div>${(((res.main.temp) - 273.15) * (9 / 5) + 32).toFixed(2)}</div>
-                <div>${res.wind.speed}</div>
+                <div>${(((res.main.temp) - 273.15) * (9 / 5) + 32).toFixed(0)}&deg;F</div>
+                <div>${Math.round(res.wind.speed)} mph</div>
                 </div>`
                 $.ajax({
                     url: 'http://api.openweathermap.org/data/2.5/forecast?lat=' + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
@@ -41,16 +42,21 @@ $("#search-btn").on("click", function () {
                     }
 
 
-
+                    forecast = ""
 
                     for (let i = 0; i < 5; i++) {
-                        forecast += (`<div class="forecast-row"><div>${dates[i]}</div>
+                        forecast += (`<div class="current-container"><div>${dates[i]}</div>
                         <div>${animatedTitles[main]}</div>
-                        <div>${description}</div>
-                        <div>${(((res.list[i].main.temp) - 273.15) * (9 / 5) + 32).toFixed(2)}</div>
-                        <div>${res.list[i].wind.speed}</div></div>`)
+                        <div class="font-class">${description}</div>
+                        <div class="font-class">${(((res.list[i].main.temp) - 273.15) * (9 / 5) + 32).toFixed(0)}&deg;F</div>
+                        <div class="font-class">${Math.round(res.list[i].wind.speed)} mph</div></div>`)
                     }
                     forecastContainer.innerHTML = forecast
+                    var searches = localStorage.getItem("prev-search")
+                    var searcharr = searches.split(";")
+                    searcharr = searcharr.filter(term => term !== "")
+                    searchdivs = searcharr.map(term => `<div>${term}</div>`)
+                    searchHistory.innerHTML = searchdivs.join("")
 
                 })
             })
@@ -61,8 +67,17 @@ var getWeatherBtn = document.getElementById("user-form")
 var cityInput = document.getElementById("user-input")
 var resultsContainer = document.getElementById("weather-container")
 var forecastContainer = document.getElementById("forecast")
-var searchHistory = document.getElementById("search-history")
+var searchHistory = document.getElementsByClassName("history-container")[0]
 var todayWeater = document.getElementById("today-weather")
+
+
+var searches = localStorage.getItem("prev-search")
+var searcharr = searches.split(";")
+searcharr = searcharr.filter(term => term !== "")
+searchdivs = searcharr.map(term => `<div>${term}</div>`)
+searchHistory.innerHTML = searchdivs.join("")
+
+
 
    // `<div><div>Current</div>
 //<div>${description}</div>
