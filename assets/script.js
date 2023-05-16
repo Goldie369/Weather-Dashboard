@@ -1,3 +1,14 @@
+//-- Adding a API Key, forecast data, animated weather titles, coordinates, and user input--//
+//-- Adding changes in the user input field and updates the userinput variable accordingly--//
+//-- Adding a click event handler to the search button (search-btn)--//
+//-- to the search button (search-btn)--//
+//-- When the search button is clicked, it retrieves the user input, stores it in the browser's local storage as part of a search history, and makes an AJAX request to the OpenWeatherMap API--//
+//-- Once the coordinates are obtained, it makes another AJAX request to retrieve the current weather info--//
+//-- The received weather data is then used to update the HTML elements--//
+//-- After retrieving the current weather, it makes another AJAX request to retrieve the 5-day forecast for the location--//
+//-- The forecast data is used to generate HTML elements for each forecasted day, including the date, weather icon, description, temperature, and wind speed--//
+//-- The search history is retrieved from local storage, and the search terms are displayed in a separate HTML container--//
+
 var weatherApiKey = '1dded313c35e600dd8d8c642de17d0ef';
 var forecast = ""
 var animatedTitles = { Clear: '☀', Clouds: '☁', Rain: '☔', Drizzle: '☔', Thunderstorm: '⚡', Snow: '❄' };
