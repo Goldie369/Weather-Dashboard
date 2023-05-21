@@ -32,7 +32,7 @@ The following criteria include app functions:
 
 ## Application link
 
-[Check out the Weather App here!](https://github.com/Goldie369/Weather-Dashboard/)
+[Check out the Weather App here!](https://goldie369.github.io/Weather-Dashboard/)
 
 
 
