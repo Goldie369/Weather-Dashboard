@@ -18,7 +18,7 @@ $('#user-input').on("change", function (e) { userinput = e.target.value })
 var update = ""
 $("#search-btn").on("click", function () {
     console.log(userinput)
-    var prevSearch = localStorage.getItem("prev-search")
+    var prevSearch = localStorage.getItem("prev-search")|| ""
     var prevArr = prevSearch?.split(";")
     prevArr.push(userinput)
     localStorage.setItem("prev-search", prevArr.join(";"))
