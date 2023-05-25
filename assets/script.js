@@ -23,11 +23,11 @@ $("#search-btn").on("click", function () {
     prevArr.push(userinput)
     localStorage.setItem("prev-search", prevArr.join(";"))
     $.ajax({
-        url: 'http://api.openweathermap.org/geo/1.0/direct?q=' + userinput + "&limit=1&apiKey=" + weatherApiKey
+        url: 'https://api.openweathermap.org/geo/1.0/direct?q=' + userinput + "&limit=1&apiKey=" + weatherApiKey
     }).then(function (coords) {
         coords = (coords)
         $.ajax({
-            url: `http://api.openweathermap.org/data/2.5/weather?lat=` + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
+            url: `https://api.openweathermap.org/data/2.5/weather?lat=` + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
         })
 
 
