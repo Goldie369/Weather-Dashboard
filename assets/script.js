@@ -43,7 +43,7 @@ $("#search-btn").on("click", function () {
                 <div>${Math.round(res.wind.speed)} mph</div>
                 </div>`
                 $.ajax({
-                    url: 'http://api.openweathermap.org/data/2.5/forecast?lat=' + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
+                    url: 'https://api.openweathermap.org/data/2.5/forecast?lat=' + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
                 }).then(function (res) {
                     let { icon, description, main } = res.list[0].weather[0]
                     var today = dayjs()
