@@ -27,7 +27,7 @@ $("#search-btn").on("click", function () {
     }).then(function (coords) {
         coords = (coords)
         $.ajax({
-            url: `https://api.openweathermap.org/data/2.5/weather?lat=` + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
+            url: `http://api.openweathermap.org/data/2.5/weather?lat=` + coords[0].lat + '&lon=' + coords[0].lon + "&apiKey=" + weatherApiKey
         })
 
 
